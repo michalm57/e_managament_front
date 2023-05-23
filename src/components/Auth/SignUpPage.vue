@@ -75,7 +75,10 @@
           name="password_confirmation"
           required
         />
-        <p ref="error_message_password_confirmation" class="text-red-500 text-xs italic"></p>
+        <p
+          ref="error_message_password_confirmation"
+          class="text-red-500 text-xs italic"
+        ></p>
       </div>
       <p ref="error_message" class="text-red-500 text-xs italic"></p>
       <div class="pt-2">
@@ -93,7 +96,7 @@
 <script>
 import axios from "axios";
 export default {
-  name: "SignUp",
+  name: "SignUpPage",
   data() {
     return {
       name: "",
@@ -116,12 +119,17 @@ export default {
             password_confirmation: this.password_confirmation,
           }
         );
-        alert(result);
+
+        if (result.status === 200) {
+          localStorage.setItem("user-info", JSON.stringify(result.data));
+          this.$router.push({ name: "HomePage" });
+        }
       } catch (error) {
         let errorData = JSON.parse(error.response.data);
         let errorMailParagraf = this.$refs.error_message_mail;
         let errorPasswordParagraf = this.$refs.error_message_password;
-        let errorPasswordConfirmationParagraf = this.$refs.error_message_password_confirmation;
+        let errorPasswordConfirmationParagraf =
+          this.$refs.error_message_password_confirmation;
 
         if (errorData.email) {
           let emailInput = this.$refs.email;
