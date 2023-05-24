@@ -2,7 +2,7 @@
   <h1 class="text-4xl pb-5">Sign Up</h1>
   <div class="place-items-center grid">
     <form
-      v-on:submit="signUp"
+      @submit.prevent="handleSubmit"
       class="bg-white shadow-md rounded px-8 pb-8 mb-4"
       ref="form"
     >
@@ -83,7 +83,7 @@
       <p ref="error_message" class="text-red-500 text-xs italic"></p>
       <div class="pt-2">
         <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          class="bg-red-400 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"
         >
           Sign Up
@@ -91,6 +91,7 @@
       </div>
     </form>
   </div>
+  <p><router-link to="/login">Login</router-link></p>
 </template>
 
 <script>
@@ -106,19 +107,16 @@ export default {
     };
   },
   methods: {
-    async signUp(event) {
-      event.preventDefault();
+    async handleSubmit() {
+      const data = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+        password_confirmation: this.password_confirmation,
+      };
 
       try {
-        let result = await axios.post(
-          "http://e_managament.dvl.to/api/auth/register",
-          {
-            name: this.name,
-            email: this.email,
-            password: this.password,
-            password_confirmation: this.password_confirmation,
-          }
-        );
+        let result = await axios.post("auth/register", data);
 
         if (result.status === 200) {
           localStorage.setItem("user-info", JSON.stringify(result.data));
@@ -150,5 +148,11 @@ export default {
       }
     },
   },
+  // mounted() {
+  //   let user = localStorage.getItem("user-info");
+  //   if (user) {
+  //     this.$router.push({ name: "HomePage" });
+  //   }
+  // },
 };
 </script>
