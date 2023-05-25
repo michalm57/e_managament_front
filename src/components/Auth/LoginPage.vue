@@ -76,8 +76,11 @@ export default {
       }
       try{
         const response = await axios.post("auth/login", data);
-        localStorage.setItem('token', response.data.access_token);
-        this.$router.push({ name: "HomePage" });
+        if(response.status === 200){
+          localStorage.setItem('token', response.data.access_token);
+          this.$store.dispatch('user', response.data.user);
+          this.$router.push({ name: "HomePage" });
+        }
       } catch (error) {
           alert(error);
       }

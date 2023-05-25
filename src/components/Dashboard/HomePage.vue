@@ -6,22 +6,11 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapGetters } from 'vuex';
 export default {
   name: "HomePage",
-  data() {
-    return {
-      user: null,
-    };
-  },
-  async created() {
-    try {
-      const respone = await axios.get("user");
-
-      this.user = respone.data;
-    } catch (error) {
-      this.$router.push({ name: "LoginPage" });
-    }
+  computed: {
+    ...mapGetters(['user'])
   },
 };
 </script>
