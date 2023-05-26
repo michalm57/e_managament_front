@@ -16,7 +16,7 @@
       </router-link>
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
         <ul
-          class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+          class="font-medium flex flex-col p-4 md:p-0 border-gray-100 md:flex-row md:space-x-8"
         >
           <li>
             <router-link
@@ -24,8 +24,9 @@
               v-if="user"
               to="/"
               href="#"
-              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              class="block text-gray-900 md:hover:text-red-400"
               aria-current="page"
+              :class="{ 'text-red-400': currentRouteName === 'HomePage' }"
             >
               Home</router-link
             >
@@ -33,7 +34,7 @@
           <li v-if="user">
             <a
               href="javascript:void(0)"
-              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              class="block text-gray-900 md:hover:text-red-400"
               aria-current="page"
               @click="handleClick"
             >
@@ -43,7 +44,8 @@
           <li v-if="!user">
             <router-link
               to="/login"
-              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              class="block text-gray-900 md:hover:text-red-400"
+              :class="{ 'text-red-400': currentRouteName === 'LoginPage' }"
               >Login</router-link
             >
           </li>
@@ -51,7 +53,8 @@
             <router-link
               to="/sign-up"
               href="#"
-              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              class="block text-gray-900 md:hover:text-red-400"
+              :class="{ 'text-red-400': currentRouteName === 'SignUpPage' }"
               >Sign Up</router-link
             >
           </li>
@@ -63,9 +66,14 @@
 
 <script>
 import { mapGetters } from "vuex";
+
 export default {
   name: "NavBarComponent",
-
+  data() {
+    return {
+      currentRoute: "",
+    };
+  },
   methods: {
     handleClick() {
       localStorage.removeItem("token");
@@ -75,6 +83,9 @@ export default {
   },
   computed: {
     ...mapGetters(["user"]),
+    currentRouteName() {
+      return this.$route.name;
+    },
   },
 };
 </script>
