@@ -1,6 +1,6 @@
 <template>
-  <h1 class="text-4xl pb-5">Sign Up</h1>
   <div class="place-items-center grid">
+    <h1 class="text-4xl pb-10">Sign Up</h1>
     <form
       @submit.prevent="handleSubmit"
       class="bg-white shadow-md rounded px-8 pb-8 mb-4"
@@ -91,7 +91,6 @@
       </div>
     </form>
   </div>
-  <p><router-link to="/login">Login</router-link></p>
 </template>
 
 <script>
@@ -148,11 +147,5 @@ export default {
       }
     },
   },
-  // mounted() {
-  //   let user = localStorage.getItem("user-info");
-  //   if (user) {
-  //     this.$router.push({ name: "HomePage" });
-  //   }
-  // },
 };
 </script>

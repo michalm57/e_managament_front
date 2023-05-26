@@ -1,6 +1,6 @@
 <template>
-  <h1 class="text-4xl pb-5">Login</h1>
   <div class="place-items-center grid">
+    <h1 class="text-4xl pb-10">Login</h1>
     <form
       v-on:submit="signUp"
       class="bg-white shadow-md rounded px-8 pb-8 mb-4"
@@ -55,7 +55,6 @@
       </div>
     </form>
   </div>
-  <p><router-link to="/sign-up">Sign Up</router-link></p>
 </template>
 
 <script>
