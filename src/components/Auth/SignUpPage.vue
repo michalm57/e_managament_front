@@ -123,16 +123,16 @@ export default {
         }
       } catch (error) {
         let errorData = JSON.parse(error.response.data);
-        let errorMailParagraf = this.$refs.error_message_mail;
-        let errorPasswordParagraf = this.$refs.error_message_password;
-        let errorPasswordConfirmationParagraf =
+        let errorMailParagraph = this.$refs.error_message_mail;
+        let errorPasswordParagraph = this.$refs.error_message_password;
+        let errorPasswordConfirmationParagraph =
           this.$refs.error_message_password_confirmation;
 
         if (errorData.email) {
           let emailInput = this.$refs.email;
 
           emailInput.classList.add("border-red-500");
-          errorMailParagraf.textContent = errorData.email;
+          errorMailParagraph.textContent = errorData.email;
         }
 
         if (errorData.password) {
@@ -141,8 +141,8 @@ export default {
 
           passwordInput.classList.add("border-red-500");
           passwordConfirmationInput.classList.add("border-red-500");
-          errorPasswordParagraf.textContent = errorData.password;
-          errorPasswordConfirmationParagraf.textContent = errorData.password;
+          errorPasswordParagraph.textContent = errorData.password;
+          errorPasswordConfirmationParagraph.textContent = errorData.password;
         }
       }
     },
