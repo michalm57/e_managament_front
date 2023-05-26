@@ -21,7 +21,6 @@
           name="email"
           required
         />
-        <p ref="error_message_mail" class="text-red-500 text-xs italic"></p>
       </div>
       <div class="mb-6">
         <label
@@ -41,7 +40,6 @@
           name="password"
           required
         />
-        <p ref="error_message_password" class="text-red-500 text-xs italic"></p>
       </div>
       <p ref="error_message" class="text-red-500 text-xs italic"></p>
       <div class="pt-2">
@@ -71,18 +69,25 @@ export default {
     async handleSubmit() {
       const data = {
         email: this.email,
-        password: this.password
-      }
-      try{
+        password: this.password,
+      };
+      try {
         const response = await axios.post("auth/login", data);
 
-        if(response.status === 200){
-          localStorage.setItem('token', response.data.access_token);
-          this.$store.dispatch('user', response.data.user);
+        if (response.status === 200) {
+          localStorage.setItem("token", response.data.access_token);
+          this.$store.dispatch("user", response.data.user);
           this.$router.push({ name: "HomePage" });
         }
       } catch (error) {
-          alert(error);
+        let errorParagraph = this.$refs.error_message;
+
+        let emailInput = this.$refs.email;
+        let passwordInput = this.$refs.password;
+
+        emailInput.classList.add("border-red-500");
+        passwordInput.classList.add("border-red-500");
+        errorParagraph.textContent = "Invalid credentials";
       }
     },
   },
