@@ -51,6 +51,13 @@
           Login
         </button>
       </div>
+      <router-link
+      to="/forgot"
+      href="#"
+      class="block text-gray-900 md:hover:text-red-400 mt-5"
+    >
+      Forgot password?
+    </router-link>
     </form>
   </div>
 </template>
