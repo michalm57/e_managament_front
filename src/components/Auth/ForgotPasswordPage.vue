@@ -49,13 +49,13 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      try{
+      try {
         let successMessageParagraph = this.$refs.success_message;
         const response = await axios.post("auth/forgot", {
           email: this.email,
         });
         successMessageParagraph.textContent = response.data.message;
-      }catch (error){
+      } catch (error) {
         let errorMessageParagraph = this.$refs.error_message;
         errorMessageParagraph.textContent = error.response.data.message;
       }

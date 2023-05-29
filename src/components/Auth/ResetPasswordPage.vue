@@ -50,6 +50,7 @@
         ></p>
       </div>
       <p ref="error_message" class="text-red-500 text-xs italic"></p>
+      <p ref="success_message" class="text-green-500 text-xs italic"></p>
       <div class="pt-2">
         <button
           class="bg-red-400 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -75,14 +76,19 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      const response = await axios.post("auth/reset", {
-        password: this.password,
-        password_confirmation: this.password_confirmation,
-        token: this.$route.params.token,
-      });
-
-      console.log(response);
-      this.$router.push("/login");
+      try {
+        let successMessageParagraph = this.$refs.success_message;
+        const response = await axios.post("auth/reset", {
+          password: this.password,
+          password_confirmation: this.password_confirmation,
+          token: this.$route.params.token,
+        });
+        successMessageParagraph.textContent = response.data.message;
+        this.$router.push("/login");
+      } catch (error) {
+        let errorMessageParagraph = this.$refs.error_message;
+        errorMessageParagraph.textContent = error.response.data.message;
+      }
     },
   },
 };
