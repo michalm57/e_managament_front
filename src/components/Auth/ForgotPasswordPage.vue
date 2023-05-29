@@ -23,6 +23,7 @@
         />
       </div>
       <p ref="error_message" class="text-red-500 text-xs italic"></p>
+      <p ref="success_message" class="text-green-500 text-xs italic"></p>
       <div class="pt-2">
         <button
           class="bg-red-400 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -48,11 +49,16 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      const response = await axios.post("auth/forgot", {
-        email: this.email,
-      });
-
-      console.log(response);
+      try{
+        let successMessageParagraph = this.$refs.success_message;
+        const response = await axios.post("auth/forgot", {
+          email: this.email,
+        });
+        successMessageParagraph.textContent = response.data.message;
+      }catch (error){
+        let errorMessageParagraph = this.$refs.error_message;
+        errorMessageParagraph.textContent = error.response.data.message;
+      }
     },
   },
 };
