@@ -20,7 +20,6 @@
         >
           <li>
             <router-link
-              li
               v-if="user"
               to="/"
               href="#"
@@ -29,6 +28,18 @@
               :class="{ 'text-red-400': currentRouteName === 'HomePage' }"
             >
               Home</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              v-if="user"
+              to="/projects"
+              href="#"
+              class="block text-gray-900 md:hover:text-red-400"
+              aria-current="page"
+              :class="{ 'text-red-400': currentRouteName === 'ProjectsPage' }"
+            >
+              Projects</router-link
             >
           </li>
           <li v-if="user">
@@ -80,7 +91,6 @@
         <ul>
           <li class="active">
             <router-link
-              li
               v-if="user"
               to="/"
               href="#"
@@ -89,6 +99,18 @@
               :class="{ 'text-red-400': currentRouteName === 'HomePage' }"
             >
               Home</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              v-if="user"
+              to="/projects"
+              href="#"
+              class="block text-sm px-2 py-4 text-white font-semibold"
+              aria-current="page"
+              :class="{ 'text-red-400': currentRouteName === 'ProjectsPage' }"
+            >
+              Projects</router-link
             >
           </li>
           <li v-if="user">

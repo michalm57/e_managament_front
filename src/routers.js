@@ -3,6 +3,7 @@ import LoginPage from "./components/Auth/LoginPage.vue";
 import ForgotPasswordPage from "./components/Auth/ForgotPasswordPage.vue";
 import ResetPasswordPage from "./components/Auth/ResetPasswordPage.vue";
 import HomePage from "./components/Dashboard/HomePage.vue";
+import ProjectsPage from "./components/Projects/ProjectsPage.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
@@ -29,6 +30,11 @@ const routes = [
     name: "HomePage",
     component: HomePage,
     path: "/",
+  },  
+  {
+    name: "ProjectsPage",
+    component: ProjectsPage,
+    path: "/projects",
   },
 ];
 
