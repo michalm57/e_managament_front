@@ -23,7 +23,6 @@
 
 <script>
 import axios from "axios";
-
 export default {
   name: "ProjectsPage",
   data() {
@@ -37,7 +36,6 @@ export default {
 
       if (data) {
         this.projects = data.data;
-        console.log(this.projects);
       }
     } catch (error) {
       console.error(error);
