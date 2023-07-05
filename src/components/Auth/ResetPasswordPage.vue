@@ -1,6 +1,6 @@
 <template>
   <div class="place-items-center grid">
-    <h1 class="text-4xl pb-10">Reset Password</h1>
+    <h1 class="text-4xl pb-8">Reset Password</h1>
     <form
       @submit.prevent="handleSubmit"
       class="bg-white shadow-md rounded px-8 pb-8 mb-4"
